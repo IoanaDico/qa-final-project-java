@@ -12,6 +12,13 @@ mkdir -p \
     "$PROJECT_DIR/data" \
     "$PROJECT_DIR/src/test/java/com/IoanaDico/tests"
 
+# Crearea fișierului de configurare al aplicației
+cat > "$PROJECT_DIR/config/app.yaml" <<'EOF'
+app:
+  name: java-project
+  version: 1.0.0
+EOF
+
 # Crearea Dockerfile pentru Java 17
 cat > "$PROJECT_DIR/Dockerfile" <<'EOF'
 FROM eclipse-temurin:17-jdk
@@ -25,56 +32,43 @@ EOF
 
 # Crearea README.md
 cat > "$PROJECT_DIR/README.md" <<'EOF'
-# Java Project
+[![GitHub Actions](https://github.com/IoanaDico/qa-final-project-java/actions/workflows/ci.yml/badge.svg)](https://github.com/IoanaDico/qa-final-project-java/actions/workflows/ci.yml)
 
-Proiect Java 17 cu structură inițială pentru teste.
+# Proiect Java 17
+
+Acest proiect oferă o structură inițială pentru un proiect Java 17 orientat
+spre teste. În forma actuală, include directoare pentru configurări și date,
+un spațiu destinat testelor și un Dockerfile cu Java 17.
+
+**Proiectul nu conține încă o aplicație sau teste executabile.** Dockerfile-ul
+pornește Java și afișează versiunea instalată; nu compilează cod și nu rulează
+teste. Pentru aceasta, adaugă codul proiectului și un sistem de build, precum
+Maven sau Gradle.
 
 ## Structura proiectului
 
 ```text
 java-project/
 ├── config/
+│   └── app.yaml
+│   └── app.yaml
 ├── data/
-├── src/
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── IoanaDico/
-│                   └── tests/
+├── src/test/java/com/IoanaDico/tests/
 ├── Dockerfile
 └── README.md
 ```
 
-## Cerințe
+## Rulare cu Docker
 
-- Linux
-- Docker
-- Java 17 (opțional pentru dezvoltare locală)
-
-## Construirea imaginii Docker
+Ai nevoie de Docker. Din directorul `java-project/`, construiește și rulează
+containerul:
 
 ```bash
 docker build -t java-project:latest .
-```
-
-## Rularea containerului
-
-```bash
 docker run --rm java-project:latest
 ```
 
-Containerul afișează versiunea Java instalată.
-
-## Directoare
-
-- `config/` - fișiere de configurare
-- `data/` - date și fișiere de intrare
-- `src/test/java/com/IoanaDico/tests/` - teste Java
-
-## Observație
-
-Pentru compilarea și executarea testelor, adaugă
-un sistem de build, precum Maven sau Gradle.
+La pornire, containerul afișează versiunea Java instalată.
 EOF
 
 echo
