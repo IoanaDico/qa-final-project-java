@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>com.IoanaDico.homework.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
